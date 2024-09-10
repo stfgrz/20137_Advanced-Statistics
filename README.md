@@ -8,7 +8,7 @@
   2. preamble.tex
   3. main.tex (will be uploaded shortly)
   Upload everything on an Overleaf file and compile; if runtime is >1min, you would need to download VS Code.
-  If you don't know how to download/use VS code, you can compile each lecture by itself.
+  If you don't know how to download/use VS code, you can compile each lecture by itself on overleaf.
 
 ## Editors
 
