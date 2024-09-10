@@ -1,0 +1,248 @@
+\setcounter{chapter}{2}
+\setchapterabstract{}
+\chapter{Exercise Session}
+\vspace{-1.5cm}
+
+{\chaptoc\noindent\begin{minipage}[inner sep=0,outer sep=0]{0.9\linewidth}\section{Introductory examples}\end{minipage}}
+
+\subsubsection{Example 1}
+
+\[
+X \sim \chi^2 (m)
+\]
+
+\[
+Y \sim \chi^2 (n)
+\]
+
+\begin{equation}
+\begin{cases}
+    U = \frac{\frac{X}{m}}{\frac{Y}{n}} \\
+    V = X+ Y \sim \chi^2 (m+n)
+\end{cases} \begin{cases}
+    x = \frac{muv}{n+mu} \\
+    y = v-x = v - \frac{muv}{n+mu} = \frac{nv}{n+mu}
+\end{cases}
+\end{equation}
+
+The jacobian matrix is equal to:
+
+\[
+J = det \begin{bmatrix}
+    \frac{mnv}{(n+mu)^2} & \frac{mu}{n+mu} \\
+    -\frac{mnv}{(n+mu)^2} & \frac{n}{n+mu} 
+\end{bmatrix} = \frac{mn^2v + m^2nvu}{(n+mu)^3} = \frac{mnv}{(n+mu)^2}
+\]
+
+
+%\[
+%\begin{bmatrix}
+%    \frac{mv(n+mu)-m^2uv}{(n+mu)^2} & \frac{m^2v}{(n+mu)^2} \\
+%    0 & \frac{n}{n+mu}
+%\end{bmatrix}
+%\]
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Photo14:52.jpg}
+    \caption{Generic example of a jacobian matrix}
+    \label{fig:14_52}
+\end{figure}
+%The determinant of the jacobian matrix is equal to:
+%\[
+%\frac{mv(n+mu)-m^2uv}{(n+mu)^2} \cdot \frac{n}{n+mu} - 0 \cdot \frac{m^2v}{(n+mu)^2} = \frac{mv(n+mu)-m^2uv}{(n+mu)^2} \cdot \frac{n}{n+mu}
+%\]
+
+The joint density of $U$ and $V$ is equal to:
+
+\[
+f_{U,V}(u,v) = f_{X,Y}(x,y) \cdot |J| = f_{X,Y}(\frac{muv}{n+mu}, \frac{nv}{n+mu}) \cdot \frac{mnv}{(n+mu)^2}
+\]
+
+At the same time, recall that:
+
+\[
+f(x,y) = \frac{(\frac{1}{2})^{\frac{m}{2}}}{\Gamma (\frac{m}{2})} \frac{(\frac{1}{2})^{\frac{n}{2}}}{\Gamma (\frac{n}{2})} \cdot x^{\frac{m}{2}-1} \cdot y^{\frac{n}{2}-1} \cdot e^{-\frac{x+y}{2}} \underbrace{\mathbb{1}_{x>0} \mathbb{1}_{y>0}}_{\mathbb{1}_{u>0} \mathbb{1}_{v>0}}
+\]
+
+Hence, the joint density of $U$ and $V$ is equal to:
+
+\[
+\frac{(\frac{1}{2})^{\frac{m}{2}}}{\Gamma (\frac{m}{2})} \frac{(\frac{1}{2})^{\frac{n}{2}}}{\Gamma (\frac{n}{2})} \cdot (\frac{muv}{n+mu})^{\frac{m}{2}-1} \cdot (\frac{nv}{n+mu})^{\frac{n}{2}-1} \cdot e^{-\frac{1}{2}v} \cdot \frac{mnv}{(n+mu)^2} \mathbb{1}_{u>0} \mathbb{1}_{v>0}
+\]
+
+\[
+ = C \left( \frac{mu}{n+mu} \right)^{\frac{m}{2}-1} v^{\frac{m}{2}-1} \left( \frac{n}{n+mu} \right)^{\frac{n}{2}-1} v^{\frac{n}{2}-1} \frac{mn}{(n+mu)^2} ve^{-\frac{1}{2}v} \mathbb{1}_{u>0} \mathbb{1}_{v>0}
+\]
+
+%Inserisci foto 15:07
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Photo15:07.jpg}
+    \caption{15:07 photo}
+    \label{fig:15_07}
+\end{figure}
+What is the constant of our function?
+
+\noindent
+\textbf{\textcolor{BrickRed}{Red Part}}
+
+\[
+f_V (v) = B v ^{\frac{m+n}{2}-1} e^{-\frac{1}{2}v} \mathbb{1}_{v>0}
+\]
+
+Given that \( U \sim Gamma (\frac{m+n}{2}, \frac{1}{2}) \), the normalising function B will be equal to:
+
+\[ B = \frac{\left(\frac{1}{2}\right)^{\frac{m+n}{2}}}{\Gamma \left( \frac{m+n}{2} \right)} \]
+
+\noindent
+\textbf{\textcolor{blue}{Blue Part}}
+
+\[
+f_U (u) = A \left( \frac{mu}{n+mu} \right)^{\frac{m}{2}-1} \left( \frac{n}{n+mu} \right)^{\frac{n}{2}-1} \frac{mn}{(n+mu)^2}  \mathbb{1}_{u>0}
+\]
+
+Where A is the normalising function. We can see that the function is equal to:
+
+\[
+A = \frac{\Gamma \left( \frac{n+m}{2} \right)}{\rho \left( \frac{m}{2} \right) \Gamma \left( \frac{n}{2} \right)} = \frac{C}{B}
+\]
+
+%TROVA COSA CAZZO È IL SIMBOLO DI RHO (NON È UNA RHO)
+
+\subsubsection{Example 2}
+
+Given a random variable \(\underbar{X} = (X_1, X_2, \ldots X_2)\); this is a sample of X i.i.d. random variables.
+
+The idea is to switch the problem from our sample to any of its own realisations. Allow us to define a set of ideal realisations:
+
+the following is a set of ideal realisations of \(\underbar{X}\), i.e. a set of \(n\) numbers.
+\[ \underbar{x} = (x_1, x_2, \ldots, x_n) \Rightarrow x_{(1)} \leq x_{(2)} \leq \ldots \leq x_{(n)} \]
+
+What is X order K? it the unique function of the sample \(\underbar{X}\) that is equal to the K-th order statistic of the sample.
+Graphically, it is \( X_{(k)} = X_{(k)}(\underbar{X}) \) such that \( \forall \underbar{x} \in \mathbb{R} \) we can define \(X_{(k)} (\underbar{x}) = x_{(k)} \)
+
+We can now define \( X_{(1)} = min X_i \) and \(X_{(n)} = max X_i \) 
+
+
+\subsubsection{Example 2 - Actual Example}
+
+    \paragraph{Example 2.1 - maximum}
+
+    Given \(V = max X_i = X_{(n)}\)
+
+    All the random variables \(X_i\) are i.i.d.; any one of them have distribution function equal to \(F_X(t) = \mathbb{P} (X \leq t)\) and density function equal to \(f_X(t) = \frac{dF_X(t)}{dt}\)
+
+    We can hence state that \(F_V(t) = \mathbb{P} (V\leq t) = \mathbb{P} (max X_i \leq t ) = \mathbb{P} (X_1 \leq t, X_2 \leq t, \ldots X_n \leq t)  \)
+
+    Given that the random variables are independent, we can state that the probability of the intersection is equal to the product of the probabilities.
+
+    \[ = \mathbb{P} (X_1 \leq t) \cdot \mathbb{P} (X_2 \leq t) \cdot \ldots \cdot \mathbb{P} (X_n \leq t)\]
+
+    Considering that \(\mathbb{P} (X_i \leq t ) = F_X (t) \), we can state:
+
+    \[ = F_X(t) \cdot F_X(t) \cdot \ldots \cdot F_X(t) = [F_X(t)]^n \]
+
+    If \(X_i\) is continuous and has density function \(f_X(t)\), we can state that:
+
+    \[ f_V (v) = n \left[ F_X(v) \right]^{n-1} f_x (v) \]
+
+    \paragraph{Example 2.2 - minimum}
+
+    Given \(W = min X_i = X_{(1)}\), we can state that:
+
+    \[F_W(t) = \mathbb{P} (W \leq t) = \mathbb{P} (min X_i \leq t) = 1 - \mathbb{P} (min X_i > t) = 1 - \mathbb{P} (X_1 > t, X_2 > t, \ldots, X_n > t) \]
+    
+    The previous equation is equal to 
+
+    \[ 1- \mathbb{P} (X_1 > t) \cdot \mathbb{P} (X_2 > t) \cdot \ldots \cdot \mathbb{P} (X_n > t) = \]
+
+    Considering that \(\mathbb{P} (X_i \leq t ) = F_X (t) \), we can state:
+
+    \[ 1- (1- F_X(t)) \ldots (1-F_X(t))  = \overbrace{1}^{Just \ a \ constant} - [1 - F_X(t)]^n \]
+
+    If \(X_i\) is continuous and has density function \(f_X(t)\), we can state that:
+
+    \[ f_W (w) = n [1 - F_X(w)]^{n-1} f_X(w) \]
+
+\subsubsection{Example 3}
+
+Assume \( U = X_{(k)} \), and \( F_U (t) = \mathbb{P} (U \leq t) = \mathbb{P} (X_{(k)} \leq t) \)
+
+Now let's fix \(t\)
+
+\[\forall t \in \mathbb{R} \text{ we construct the random variables } (X_1, X_2, \ldots , X_n) \text{ and } (Y_1, Y_2, \ldots , Y_n)  \]
+
+Consider that \(Y \sim Bern (p)\), where 
+
+\[ Y_i \begin{cases}
+    1 & \text{ if } t \leq t \\
+    0 & \text{ if } t > t
+\end{cases} \]
+
+Always consider that \(p = \mathbb{P} (Y_i = 1) = \mathbb{P} (X_i \leq t) = F_X(t) \)
+
+Now consider the sum of the Bernoulli random variables:
+
+\[ S = \sum_{i=1}^{n} Y_i \text{ with } S \sim Bern (n,p = F_X(t)) \]
+
+When comparing the random variable \(X_{(t)}\) with the sum, we can state that:
+
+    \[ X_{(k)} \leq t \iff S \geq k \]
+
+Now, we can state that:
+
+    \[ F_U(t) = \mathbb{P} (X_{(k)} \leq t) = \mathbb{P} (S \geq k) = 1 - \mathbb{P} (S < k) = \mathbb{P} (S \geq k) \]
+
+    \[ = \sum_{j=k}^{n} p^j (1-p)^{n-j} = \sum_{j=k}^{n} \binom{n}{j} [F_X(t)]^j [1-F_X(t)]^{n-j} \]
+
+\subsubsection{Example 4}
+
+Provided that we are in the continuous case, the density is the derivative of the limit:
+
+\[ f_U(u) = \lim_{h \to 0} \frac{F_U(u+h) - F_U(u)}{h} = \]
+
+Now let's focus on the numerator:
+
+\[ F_U(u+h) = \mathbb{P} ( \text{at least } k X_i \leq u+h) \]
+\[ F_U(u) = \mathbb{P} ( \text{at least } k X_i \leq u) \]
+
+The next step is to calculate the two probabilities:
+
+\[ \mathbb{P} ( 1 \text{ obs } \in (u, u+h)) \]
+\[ \mathbb{P} (  \text{ more than 1 obs } \in (u, u+h)) = \sigma (h) \]
+
+Let us now define the difference between the two probabilities:
+
+\[ F_U(u+h) - F_U(u) = \mathbb{P} (k-1 \text{ obs to the left of } u \text{ and 1 obs in } (u, u+h), n-k \text{ obs to the right of } u+h) + \mathbb{P} (k \text{ obs to the left of } u) \]
+\[ = \frac{n!}{(k-1)!1!(n-k)!} \cdot \left[ F_X (u) \right]^{k-1} \cdot \left[ F_X (u+h) - F_x(u) \right] \left[ 1-F_X (u+h) \right]^{n-k}   \]
+
+The limit described above now becomes:
+
+\[ f_U(u) = \lim_{h \to 0} \frac{1}{h} \cdot \frac{n!}{(k-1)!1!(n-k)!} \cdot \left[ F_X (u) \right]^{k-1} \cdot \left[ F_X (u+h) - F_x(u) \right] \left[ 1-F_X (u+h) \right]^{n-k} \]
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{Photo15:08.jpg}
+    \caption{Pay attention to the highlighted stuff}
+    \label{fig:15_08}
+\end{figure}
+Please note that all this stuff does not move away from \(h\). We can now state that:
+% "all of this stuff" è QUELLA PARTE EVIDENZIATA NELLE FOTO DELLE 15:07
+
+\[ = \frac{n!}{(k-1)!1!(n-k)!} \cdot \left[ F_X (u) \right]^{k-1} \left[ 1-F_X (u) \right]^{n-k} \cdot \left[ f_X(u) \right] \]
+
+\Remark{
+    \[\mathbb{P} (X_1, X_2 \in (u, u+h)) = \mathbb{P} (X_1 \in (u, u+h)) \cdot \mathbb{P} (X_2 \in (u, u+h)) = \]
+    \[ \left[ f_X(u) h + \sigma (h) \right]^2 = f_X^2 (u) h^2 + f_x(u) h \sigma (h) + \sigma (h)^2 \]
+}
+
+Try to obtain the density of the minimum, maximum if you have a sample \(X_1, \ldots X_n\) and \(X \sim U (0,1)\)
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Photo15:08.jpg}
+    \caption{Pay attention to the highlighted stuff}
+    \label{fig:enter-label}
+\end{figure}

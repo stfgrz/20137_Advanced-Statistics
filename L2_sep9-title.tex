@@ -1,0 +1,310 @@
+\setcounter{chapter}{1}
+\setchapterabstract{}
+\chapter{Exercise Session}
+\vspace{-1.5cm}
+
+{\chaptoc\noindent\begin{minipage}[inner sep=0,outer sep=0]{0.9\linewidth}\section{Introductory examples}\end{minipage}}
+
+\( \underbar{X} = \{ X_1, X_2, \ldots X_n \} \)
+\( \underbar{Y} = \{ Y_1, Y_2, \ldots Y_n \} \)
+
+\( \underbar{Y} = \underbar{g}(\underbar{X}) \)
+\( \underbar{X} = \underbar{h}(\underbar{Y}) \)
+
+\begin{equation}
+    \begin{cases}
+        x_1 = h_1(y_1, y_2, \ldots, y_n) \\
+        x_2 = h_2(y_1, y_2, \ldots, y_n) \\
+        \ldots \\
+        x_n = h_n(y_1, y_2, \ldots, y_n)
+    \end{cases}
+\end{equation}
+
+\(f_{\underbar{X}} (\underbar{x})\)
+\( f_{\underbar{Y}} (\underbar{y}) = f_{\underbar{X}} (\underbar{h}(\underbar{Y})) \cdot |J| \)
+
+Inserisci foto 12:10
+
+\[
+J = \begin{bmatrix}
+\frac{{\partial g_1}}{{\partial x_1}} & \frac{{\partial g_1}}{{\partial x_2}} & \ldots & \frac{{\partial g_1}}{{\partial x_n}} \\
+\frac{{\partial g_2}}{{\partial x_1}} & \frac{{\partial g_2}}{{\partial x_2}} & \ldots & \frac{{\partial g_2}}{{\partial x_n}} \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{{\partial g_n}}{{\partial x_1}} & \frac{{\partial g_n}}{{\partial x_2}} & \ldots & \frac{{\partial g_n}}{{\partial x_n}}
+\end{bmatrix}
+\]
+
+\subsection{Example}
+
+\[
+f_{XY} (x,y) = \frac{2}{\pi} \sqrt{y^3} exp\{ -x^2y^2 -y\} \mathbb{1}(y>0)
+\]
+
+Find \(U=XY\)
+
+\Note{
+    There is no short-hand formula for any other function of \(X\) and \(Y\) other than the one seen in the previous lecture.
+}
+
+We need a dummy variable, in this case one possible idea is \(V=Y\) as we have \(Y\) alone in the equation.
+
+\[
+\begin{cases}
+    U = XY \\
+    V = Y
+\end{cases} \begin{cases}
+    x = \frac{u}{v} \\
+    y = v
+\end{cases}
+\]
+
+The jacobian matrix is:
+
+\[
+J = \begin{bmatrix}
+\frac{{\partial x}}{{\partial u}} & \frac{{\partial x}}{{\partial v}} \\
+\frac{{\partial y}}{{\partial u}} & \frac{{\partial y}}{{\partial v}}
+\end{bmatrix} =d et \begin{bmatrix}
+\frac{1}{v} & -\frac{u}{v^2} \\
+0 & 1
+\end{bmatrix} = \frac{1}{v}
+\]
+
+The equation becomes:
+
+\[
+f_{UV} (u,v) = f_{XY} (\frac{u}{v}, v) \cdot \frac{1}{v} = \frac{2}{\pi} \sqrt{v^3} exp\{ -\frac{u^2}{v^2}v^2 -v\} \mathbb{1}(v>0) \cdot \frac{1}{v} = \frac{2}{\pi} e^{-u^2} \sqrt{v} e_{-v} \mathbb{1}(v>0)
+\]
+Allow us to define \(\frac{2}{\pi}\) as \(c\), \(e^{-u^2}\) as \(k_1(u)\) and \(\sqrt{v} \cdot  e^{-v} \mathbb{1}(v>0)\) as \(k_2(v)\)
+If \(w \sim n(o, \sigma^2) \rightarrow f_W(w) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{w^2}{2\sigma^2}}\)
+\[
+\frac{1}{\sqrt{\pi}} e^{-u^2} \cdot \frac{2}{\sqrt{\pi}} \sqrt{v} e^{-v} \mathbb{1}(v>0) = c \cdot k_1(u) \cdot k_2(v)
+\]
+
+\Remark{
+    We say that \(X \sim Gamma (\alpha, \beta)\) when the density function is \(f_X(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} \mathbb{1}(x>0)\)
+}
+
+\[
+\underbrace{\frac{1}{\sqrt{ \pi }} e^{-u^2}}_{U \sim N (0, \frac{1}{2})} \cdot \underbrace{\frac{2}{\sqrt{\pi}} \sqrt{v} e^{-v} \mathbb{1}(v>0)}_{V \sim Gamma (\frac{3}{2}, 1)}
+\]
+
+\Note{
+    \(\Gamma (z+1) = z \cdot \Gamma (z)\)
+}
+
+\[\Gamma (\frac{3}{2}) = \frac{1}{2} \underbrace{\Gamma (\frac{1}{2})}_{\sqrt{ \pi }} = \frac{ \sqrt{\pi} }{2} \]
+
+\subsection{Example 2}
+
+\[ X, Y \sim Exp (\lambda) \text{ and } U=X-Y \]
+
+Where the two variables are independent.
+Allow us to employ an auxilliary variable \(V=X+Y\)
+
+\[
+\begin{cases}
+    U = X-Y \\
+    V = X+Y
+\end{cases} \begin{cases}
+    x = \frac{u+v}{2} \\
+    y = \frac{v-u}{2}
+\end{cases}
+\]
+
+The jacobian matrix is equal to:
+
+\[
+J = \begin{bmatrix}
+\frac{1}{2} & \frac{1}{2} \\
+-\frac{1}{2} & \frac{1}{2}
+\end{bmatrix} = \frac{1}{2}
+\]
+
+The density functions for \(X\) and \(Y\) are:
+\[f_X (x) = \lambda e^{-\lambda x} \mathbb{1}(x>0)\]
+\[f_Y (y) = \lambda e^{-\lambda y} \mathbb{1}(y>0)\]
+
+The joint density function is:
+
+\[
+f_{XY} (x,y) = \lambda^2 e^{-\lambda x} \lambda e^{-\lambda y} = \lambda^2 e^{-\lambda (x+y)} \mathbb{1}(x>0) \mathbb{1}(y>0)
+\]
+\[
+f_{UV} (u,v) = f_{XY} (\frac{u+v}{2}, \frac{v-u}{2}) \cdot \frac{1}{2} = \lambda^2 e^{-\lambda v} \mathbb{1}(u>0) \mathbb{1}(v>0)
+\]
+
+Moving on to the indicator function, the two inequalities can be combined into one:
+
+\[
+\begin{cases}
+    \frac{u+v}{2} > 0 \\
+    \frac{v-u}{2} > 0
+\end{cases} \begin{cases}
+    u+v > 0 \\
+    v-u > 0
+\end{cases}
+\]
+
+How can we find the marginal density of \(U\)? Integrating
+
+\[
+f_U (u) = \int_{-\infty}^{+\infty} f_{UV} (u,v) dv = \int_{0}^{+\infty} \frac{\lambda^2}{2} e^{-\lambda v} dv = \frac{\lambda^2}{2} \int_{0}^{+\infty} e^{-\lambda v} dv 
+\]
+
+Since the integration variable is \(v\), it is ore importantn to consider the previous system of inequalities with respect to \(v\).
+
+\[
+\begin{cases}
+    u+v > 0 \\
+    v-u > 0
+\end{cases} \begin{cases}
+    v > -u \\
+    v > u
+\end{cases} \begin{cases}
+    v > |u| \\
+\end{cases}
+\]
+
+\[
+f_{UV} (u,v) = \frac{\lambda^2}{2} e^{-\lambda v} \mathbb{1}(v>|u|)
+\]
+
+The integral then becomes
+
+\[
+f_U (u) = \frac{\lambda^2}{2} \int_{|u|}^{+\infty} e^{-\lambda v} \mathbb{1}(u>|v|) dv = \int_{|u|}^{+\infty} \frac{\lambda^2}{2} e^{-\lambda v} dv = METTIQUALCOSA = \frac{\lambda}{2} e^{- |u|}
+\]
+
+\subsection{Example 3}
+
+\[ X \sim N(0,1) \text{ and } Y \sim \chi^2 (n) \text{ and } T = \frac{X}{\sqrt{\frac{Y}{n}}} \ \left[ \sim t(n) \right] \]
+
+Where \(X\) and \(Y\) are independent.
+
+\[
+X_1, X_2, \ldots, X_n \sim N(\mu,\sigma^2) \ \ \ \  \bar{X}= \frac{1}{n} \sum X_i \ \ \ \ S^2_n = \frac{1}{n-1} \sum (X_i - \bar{X})^2
+\]
+
+Is the sample mean independent of the sample variance?
+
+INSERISCI FOTO 12:53
+
+\Note{
+    By the end of october, we will see that the sample mean and sample variance are independent.
+}
+
+Again, we need a random variable \(V\) to help us.
+
+\[
+\begin{cases}
+    T = \frac{X}{\sqrt{\frac{Y}{n}}} \\
+    V = Y
+\end{cases} \begin{cases}
+    x = t \sqrt{\frac{v}{n}} \\
+    y = v
+\end{cases} \begin{cases}
+    t = \frac{x}{\sqrt{\frac{y}{n}}} \\
+    v = y 
+\end{cases} \begin{cases}
+    x = t \sqrt{\frac{v}{n}} \\
+    y = v 
+\end{cases}
+\]
+
+The jacobian matrix is:
+
+\[ J = \begin{bmatrix}
+    \frac{v}{n} & \frac{t}{2} \frac{1}{v} \\
+    0 & 1
+\end{bmatrix} = \sqrt{\frac{v}{n}}
+\]
+
+We actually don't care about the matrix entry in the top right corner: we only need the determinant.
+
+The joint density function is:
+
+\[ 
+f_{XY} (x,y) = \frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}} \cdot \frac{\frac{1}{2}^{\frac{n}{2}}}{\Gamma (\frac{n}{2})} y^{\frac{n}{2}-1} e^{- \frac{1}{2}y} \mathbb{1}(y>0)
+\]
+
+The joint distribution function of \(T\) and \(V\) is:
+
+\[ 
+f_{TV} (t,v) = f_{XY} (t \sqrt{\frac{v}{n}}, v) \cdot \sqrt{\frac{v}{n}} = \frac{1}{\sqrt{2 \pi}} e^{-\frac{t^2}{2} \frac{v}{n}} \cdot \frac{\frac{1}{2}^{\frac{n}{2}}}{\Gamma (\frac{n}{2})} v^{\frac{n}{2}-1} e^{- \frac{1}{2}v} \mathbb{1}(v>0) \cdot \sqrt{\frac{v}{n}}
+\]
+\[
+= \frac{1}{\sqrt{2 \pi}} \frac{\frac{1}{2}^{\frac{n}{2}}}{\Gamma (\frac{n}{2})} v^{\frac{n}{2}-\frac{1}{2}} e^{-\frac{1}{2}v} e^{-\frac{t^2}{2} \frac{v}{n}} \mathbb{1}(v>0)
+\]
+\[
+= \frac{1}{\sqrt{2 \pi}} \frac{\frac{1}{2}^{\frac{n}{2}}}{\Gamma (\frac{n}{2})} exp \left\{ -\frac{t^2}{2n} - \frac{1}{2} v \right\} \mathbb{1}(v>0) \sqrt{\frac{v}{n}}
+\]
+\[
+= \frac{1}{\sqrt{2 \pi}} \frac{\frac{1}{2}^{\frac{n}{2}}}{\Gamma (\frac{n}{2})} u^{n-1}{2}  exp \left\{ - \frac{t^2+n}{2n} v \right\} \mathbb{1}(v>0) \sqrt{ \frac{v}{n}}
+\]
+
+The distriution function of \(T\) is:
+
+\[
+f_T (t) = \int_{-\infty}^{+\infty} f_{TV} (t,v) dv = \int_{0}^{+\infty} \frac{1}{\sqrt{2 \pi}} \frac{\frac{1}{2}^{\frac{n}{2}}}{\Gamma (\frac{n}{2})} v^{\frac{n}{2}-1} e^{-\frac{1}{2}v} \sqrt{\frac{v}{n}} e^{-\frac{t^2+n}{2n}v} dv
+\]
+Commenta questa equazione come da foto 13:09.
+
+
+Let us recall again the gamma density function:
+
+\[
+X \sim \Gamma (\alpha, \beta) \rightarrow f_X (x) = \frac{\beta^\alpha}{\Gamma (\alpha)} x^{\alpha-1} e^{-\beta x} \mathbb{1}(x>0)
+\]
+
+Notice that, comparing the previous equation and the gamma density function, we can see that the gamma density function is the same as the previous equation with \(\alpha = \frac{n+1}{2}\) and \(\beta = \frac{t^2+n}{2n}\).
+
+\subsection*\textit{}{Lost a few things before this}
+
+\subsection{Example 4}
+
+    \[X \sim \chi^2 (m), \ \ \ \ Y \sim \chi^2(n)\]
+
+    With \(X\) and \(Y\) independent.
+
+    \[
+    \begin{cases}
+        U = \frac{\frac{X}{m}}{\frac{Y}{n}} & \ U \sim \mathbb{F} (m,n) \\
+        V = X+Y  & \ V \sim \chi^2 (m+n) 
+    \end{cases} \begin{cases}
+        \frac{x}{m} = u \frac{u-x}{v} \\
+        y = v-x
+    \end{cases} \begin{cases}
+        x = \frac{\frac{uv}{n}}{\frac{1}{m}+\frac{u}{n}} \\
+        y = u-v \cdot \frac{\frac{u}{n}}{\frac{1}{m}+ \frac{u}{n}}
+    \end{cases}
+    \]
+    \[
+    \begin{cases}
+        x = m \cdot \frac{uv}{n+u} \\
+        y = nm \cdot \frac{v}{n+v}
+    \end{cases}
+    \]
+
+    The jacobian matrix is: INSERISCI FOTO 13:29
+
+    \[
+    J = \begin{bmatrix}
+        m \frac{nv}{} & \frac{u}{n+u} \\
+        0 & \frac{nm}{n+v}
+    \end{bmatrix} = \frac{v}{n+u} \cdot \frac{nm}{n+v}
+    \]
+
+    The joint density function of \(X\) and \(Y\) is:
+
+    \[
+    f_{X,Y}(x,y) = \frac{1}{2^{\frac{m}{2}}\Gamma(\frac{m}{2})} x^{\frac{m}{2}-1} e^{-\frac{x}{2}} \cdot \frac{12^{\frac{n}{2}}}{\Gamma(\frac{n}{2})} y^{\frac{n}{2}-1} e^{-\frac{y}{2}} \mathbb{1}(x>0) \mathbb{1}(y>0)
+    \]
+
+
+
+
+
+
+
+
